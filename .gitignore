@@ -1,0 +1,9 @@
+School.Api/bin/
+School.Api/obj/
+School.Application/bin/Debug/
+School.Application/obj/
+School.Domain/obj/
+School.Infrastructure/bin/
+School.Infrastructure/obj/
+School.Tests/bin/
+School.Tests/obj/
