@@ -1,0 +1,40 @@
+<p>student-detail-form works!</p>
+<form [formGroup]="studentForm" role="form">
+    <div class="mb-3">
+        <label>First Name</label>
+        <input class="form-control form-control-lg"
+            formControlName="firstName"
+            id="firstName">
+    </div>
+    <div class="mb-3">
+        <label>Last Name</label>
+        <input class="form-control form-control-lg"
+            formControlName="lastName"
+            id="lastName">
+    </div>
+    <div class="mb-3">
+        <label>Birth Date</label>
+        <input class="form-control form-control-lg"
+            formControlName="birthDate"
+            id="birthDate"
+            type="date">
+    </div>
+    <div class="mb-3">
+        <label>email</label>
+        <input class="form-control form-control-lg"
+            formControlName="email"
+            id="email">
+    </div>
+    <div class="mb-3">
+        <label>Phone Number</label>
+        <input class="form-control form-control-lg"
+            formControlName="phoneNumber"
+            id="phoneNumber"
+            >
+    </div>
+    <button class="btn btn-primary btn-mr" 
+        type="button"
+        (click)="save()">
+        Save
+    </button>
+</form>
