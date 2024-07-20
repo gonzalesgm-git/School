@@ -67,15 +67,34 @@ namespace School.Tests
             new List<object[]>
             {
                     new object[] {
-                        new Student { FirstName = "", LastName="qq", BirthDate=DateTime.Now, Email="q@test.com", Id=1, PhoneNumber="1"},
+                        new Student { 
+                            FirstName = "", 
+                            LastName="qq", 
+                            BirthDate=DateTime.Now, 
+                            Email="q@test.com", 
+                            Id=1, 
+                            PhoneNumber="1"
+                        },
                         false
                     },
                     new object[] {
-                        new Student { FirstName = "q", LastName="qq", BirthDate=DateTime.Now, Email="q@test.com", Id=1, PhoneNumber="1"},
+                        new Student { 
+                            FirstName = "q", 
+                            LastName="qq", 
+                            BirthDate=DateTime.Now, 
+                            Email="q@test.com", 
+                            Id=1, 
+                            PhoneNumber="1"},
                         false,
                     },
                     new object[] {
-                        new Student { FirstName = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", LastName="qq", BirthDate=DateTime.Now, Email="q@test.com", Id=1, PhoneNumber="1"},
+                        new Student { 
+                            FirstName = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 
+                            LastName="qq", 
+                            BirthDate=DateTime.Now, 
+                            Email="q@test.com", 
+                            Id=1, 
+                            PhoneNumber="1"},
                         false
                     },
             };

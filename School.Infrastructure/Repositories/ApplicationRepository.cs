@@ -6,7 +6,7 @@ namespace School.Infrastructure.Repositories
 {
     public interface IApplicationRepository : IRepository<Application>
     {
-        Task<IEnumerable<ApplicationInfo>> GetApplicationInfo();
+        Task<IEnumerable<ApplicationInfoResponse>> GetApplicationInfo();
     }
     internal class ApplicationRepository : IApplicationRepository
     {
@@ -26,12 +26,12 @@ namespace School.Infrastructure.Repositories
             return await _context.Applications.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<ApplicationInfo>> GetApplicationInfo()
+        public async Task<IEnumerable<ApplicationInfoResponse>> GetApplicationInfo()
         {
             var res = await (from app in _context.Applications
                         join stud in _context.Students on app.StudentId equals stud.Id
                         join c in _context.Courses on app.CourseId equals c.Id
-                        select new ApplicationInfo
+                        select new ApplicationInfoResponse
                         {
                             ApplicationDate = app.ApplicationDate,
                             Course = c.Title,
