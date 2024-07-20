@@ -15,5 +15,6 @@ namespace School.Infrastructure
         }
 
         public DbSet<Student> Students{ get; set; }
+        public DbSet<Course> Courses{ get; set; }
     }
 }

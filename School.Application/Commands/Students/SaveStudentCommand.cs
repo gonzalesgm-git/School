@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using School.Domain.Models;
 
-namespace School.Application.Commands;
+namespace School.Application.Commands.Students;
 
-public record SaveStudentCommand(Student student): IRequest<Result<Student>>;
+public record SaveStudentCommand(Student student) : IRequest<Result>;
 

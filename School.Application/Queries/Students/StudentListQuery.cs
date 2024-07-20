@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School.Application.Commands
-{
-    public record class DeleteStudentCommand(int id): IRequest<Result<Student>>;
-}
+namespace School.Application.Queries.Students;
+
+public record StudentListQuery : IRequest<IEnumerable<Student>>;
+

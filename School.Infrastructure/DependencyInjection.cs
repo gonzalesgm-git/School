@@ -22,8 +22,8 @@ namespace School.Infrastructure
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-           
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ICourseRepostory, CourseRepository>();
             return services;
         }
     }

@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using School.Application.Commands;
+using School.Application.Commands.Students;
 using School.Application.Queries;
+using School.Application.Queries.Students;
+using School.Domain.Dto;
 using School.Domain.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,19 +37,33 @@ namespace School.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Student student)
+        public async Task<IActionResult> Post([FromBody] CreateStudentRequestDto dto)
         {
+            var student = new Student()
+            {
+                BirthDate = dto.BirthDate,
+                Email = dto.Email,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                PhoneNumber = dto.PhoneNumber,
+            };
             var res = await _sender.Send(new SaveStudentCommand(student));
             return Ok(res);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Student student)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateStudentRequestDto dto)
         {
-            if (id != student.Id)
+            var student = new Student()
             {
-                return BadRequest();
-            }
+                Id = id,
+                BirthDate = dto.BirthDate,
+                Email = dto.Email,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                PhoneNumber = dto.PhoneNumber,
+            };
+
             var res = await _sender.Send(new UpdateStudentCommand(student));
             return Ok(res);
         }

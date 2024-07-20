@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School.Application.Queries;
+namespace School.Application.Queries.Students
+{
+    public record StudentQuery(int id) : IRequest<Student>;
 
-public record StudentListQuery: IRequest<IEnumerable<Student>>;
-
+}

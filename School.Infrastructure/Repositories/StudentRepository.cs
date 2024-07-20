@@ -31,7 +31,7 @@ namespace School.Infrastructure.Repositories
 
         public async Task<IEnumerable<Student>> GetAllAsync()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students.AsNoTracking().ToListAsync();
         }
 
         public async Task<bool> SaveAsync(Student item)

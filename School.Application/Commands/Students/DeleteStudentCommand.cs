@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School.Application.Commands
+namespace School.Application.Commands.Students
 {
-    public record UpdateStudentCommand(Student student): IRequest<Student>;
-        
+    public record class DeleteStudentCommand(int id) : IRequest<Result>;
 }

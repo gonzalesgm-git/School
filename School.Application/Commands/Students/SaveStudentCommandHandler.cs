@@ -9,27 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace School.Application.Commands
+namespace School.Application.Commands.Students
 {
-    internal class SaveStudentCommandHandler: IRequestHandler<SaveStudentCommand, Result<Student>>
+    public class SaveStudentCommandHandler : IRequestHandler<SaveStudentCommand, Result>
     {
         private IStudentRepository _repository;
-        public SaveStudentCommandHandler(IStudentRepository repository) 
+        public SaveStudentCommandHandler(IStudentRepository repository)
         {
             _repository = repository;
         }
-       
-        public async Task<Result<Student>> Handle(SaveStudentCommand command, CancellationToken cancellationToken)
+
+        public async Task<Result> Handle(SaveStudentCommand command, CancellationToken cancellationToken)
         {
             var validator = new SaveStudentValidator();
             var validatorResult = await validator.ValidateAsync(command.student);
             if (!validatorResult.IsValid)
             {
-                return  Result<Student>.IsFail(validatorResult.Errors.Select(e => e.ErrorMessage).ToArray());
+                return Result.Fail(string.Join(",", validatorResult.Errors.Select(x => x.ErrorMessage)));
             }
 
             await _repository.SaveAsync(command.student);
-            return Result<Student>.Ok(command.student);
+            return Result.OK();
         }
     }
 }

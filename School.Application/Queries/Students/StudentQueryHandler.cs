@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School.Application.Queries
+namespace School.Application.Queries.Students
 {
     internal class StudentQueryHandler : IRequestHandler<StudentQuery, Student>
     {

@@ -1,10 +1,16 @@
-<p>student-detail-form works!</p>
+<h1>Create Student</h1>
 <form [formGroup]="studentForm" role="form">
     <div class="mb-3">
         <label>First Name</label>
         <input class="form-control form-control-lg"
             formControlName="firstName"
             id="firstName">
+        <!-- <div *ngIf="firstName.dirty || firstName.touched"  class="alert">
+            <div *ngIf="firstName.errors?.['required']">Name is required.</div>
+            <div *ngIf="firstName.errors?.['minlength']">
+              Name must be at least 2 characters long.
+            </div>
+        </div> -->
     </div>
     <div class="mb-3">
         <label>Last Name</label>

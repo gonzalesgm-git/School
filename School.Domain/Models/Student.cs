@@ -12,6 +12,8 @@ public class Student
     public string FirstName { get; set; } = string.Empty;
     [Column(TypeName = "nvarchar(100")]
     public string LastName { get; set; } = string.Empty;
+    [Column(TypeName = "nvarchar(100)")]
+    public string Email { get; set; } = string.Empty;
     [Column(TypeName = "datetime")]
     public DateTime BirthDate { get; set; }
     [Column(TypeName = "nvarchar(20)")]

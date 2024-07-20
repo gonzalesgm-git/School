@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School.Application.Queries
+namespace School.Application.Queries.Students
 {
     public class StudentListQueryHandler : IRequestHandler<StudentListQuery, IEnumerable<Student>>
     {

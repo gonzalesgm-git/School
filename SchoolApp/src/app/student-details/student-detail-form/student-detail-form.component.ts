@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../shared/student.service';
 import { Subscription } from 'rxjs';
@@ -28,10 +28,10 @@ export class StudentDetailFormComponent implements OnInit{
 
   createForm():void{
     this.studentForm = this.formBuilder.group({
-      firstName: new FormControl<string>('', {validators: [Validators.required]}),
+      firstName: new FormControl<string>('', {validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)]}),
       lastName: new FormControl<string>('', {validators: [Validators.required]}),
       birthDate: new FormControl<Date>(new Date, {validators: [Validators.required]}),
-      email: new FormControl<string>('', {validators: [Validators.required]}),
+      email: new FormControl<string>('', {validators: [Validators.email]}),
       phoneNumber: new FormControl<string>('', {validators: [Validators.required]}),
     });
   }
@@ -49,7 +49,7 @@ export class StudentDetailFormComponent implements OnInit{
       this.studentService.save(student)
         .subscribe({
           next: data => {
-            console.log(data);
+           
           },
           error: err => {}
         })
