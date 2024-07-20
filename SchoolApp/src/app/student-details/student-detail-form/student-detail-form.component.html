@@ -12,12 +12,17 @@
         <input class="form-control form-control-lg"
             formControlName="firstName"
             id="firstName">
-        <!-- <div *ngIf="firstName.dirty || firstName.touched"  class="alert">
-            <div *ngIf="firstName.errors?.['required']">Name is required.</div>
-            <div *ngIf="firstName.errors?.['minlength']">
+        <div *ngIf="studentForm.controls['firstName'].dirty || studentForm.controls['firstName'].touched"  class="alert">
+            <small *ngIf="studentForm.controls['firstName'].errors?.['required']"
+                class="text-danger">Name is required.</small>
+            <small class="text-danger" *ngIf="studentForm.controls['firstName'].errors?.['minlength']">
               Name must be at least 2 characters long.
-            </div>
-        </div> -->
+            </small>
+            <small class="text-danger" *ngIf="studentForm.controls['firstName'].errors?.['maxlength']">
+                Name must be at least 30 characters long.
+              </small>
+        </div>
+        
     </div>
     <div class="mb-3">
         <label>Last Name</label>
@@ -30,13 +35,15 @@
         <input class="form-control form-control-lg"
             formControlName="birthDate"
             id="birthDate"
-            type="date">
+            type="date"
+            value="{{ selectedStudent.birthDate | date:'yyyy-MM-dd' }}">
+            
     </div>
     <div class="mb-3">
         <label>email</label>
         <input class="form-control form-control-lg"
             formControlName="email"
-            id="email">
+            id="email" value="">
     </div>
     <div class="mb-3">
         <label>Phone Number</label>
@@ -46,7 +53,8 @@
     </div>
     <button class="btn btn-primary btn-mr" 
         type="button"
-        (click)="save()">
+        (click)="save()"
+        [disabled]="isProcessing">
         Save
     </button>
 </form>

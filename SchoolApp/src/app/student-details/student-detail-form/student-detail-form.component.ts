@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, output, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, output, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../shared/student.service';
 import { Subscription } from 'rxjs';
 import { Student } from '../../shared/student.model';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class StudentDetailFormComponent implements OnInit, OnDestroy, OnChanges{
   studentAdded = output<any>();
   studentUpdated = output<any>();
   @Input() selectedStudent!: Student;
+  isProcessing: boolean = false;
 
   constructor(private studentService: StudentService,
     private formBuilder: FormBuilder){
@@ -40,15 +42,20 @@ export class StudentDetailFormComponent implements OnInit, OnDestroy, OnChanges{
 
   createForm():void{
     this.studentForm = this.formBuilder.group({
-      firstName: new FormControl<string>(this.selectedStudent ? this.selectedStudent.firstName : '', {validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)]}),
-      lastName: new FormControl<string>(this.selectedStudent ? this.selectedStudent.lastName : '', {validators: [Validators.required]}),
-      birthDate: new FormControl<Date>(this.selectedStudent ? this.selectedStudent.birthDate : new Date, {validators: [Validators.required]}),
+      firstName: new FormControl<string>(this.selectedStudent ? this.selectedStudent.firstName : '', { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)]}),
+      lastName: new FormControl<string>(this.selectedStudent ? this.selectedStudent.lastName : '', {validators: [Validators.required]}, ),
+      birthDate: new FormControl<Date>(this.selectedStudent ? this.selectedStudent.birthDate : new Date(), {validators: [Validators.required]}),
       email: new FormControl<string>(this.selectedStudent ? this.selectedStudent.email: '', {validators: [Validators.email]}),
       phoneNumber: new FormControl<string>(this.selectedStudent ? this.selectedStudent.phoneNumber : '', {validators: [Validators.required]}),
-    });
+    });    
   }
 
   save(): void{
+    if(!this.studentForm.valid){
+      console.log(this.studentForm);
+      return;
+    }
+    
     const student = {
       firstName: this.studentForm.value.firstName,
       lastName: this.studentForm.value.lastName,
@@ -66,26 +73,35 @@ export class StudentDetailFormComponent implements OnInit, OnDestroy, OnChanges{
   }
 
   addStudent(student: Student): void{
-  
+    this.isProcessing = true;
     this.subscription.add(
       this.studentService.save(student)
         .subscribe({
           next: data => {
            this.studentAdded.emit(data);
+           this.isProcessing = false;
           },
-          error: err => {}
+          error: err => {},
+          complete:() => {
+            this.isProcessing = false;
+          }
         })
     );
   }
 
   updateStudent(student: Student): void{
+    this.isProcessing = true;
     this.subscription.add(
       this.studentService.update(student)
         .subscribe({
           next: data => {
             this.studentUpdated.emit(data);
+            this.isProcessing = false;
           },
-          error: err => {}
+          error: err => {},
+          complete:() => {
+            this.isProcessing = false;
+          }
         })
     );
   }
