@@ -3,8 +3,8 @@ How To Run
 Notes:
 1. On backend ApplicationController, only 2 endpoints implemented (getAll and save)
 2. Backend tests are created using xunit and Moq (not NUnit, Shouldly)
-2. On Frontend, it was created using Angular (not vuejs, quasar, axios)
-2. On Frontend, only Student page as implemented.
+3. On Frontend, it was created using Angular (not vuejs, quasar, axios)
+4. On Frontend, only Student page as implemented.
 
 Requirements: 
 .Net 8 installed
