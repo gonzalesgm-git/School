@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace School.Infrastructure.Repositories
 {
-    public interface IStudentRepository: IRepository<Student>;
+    public interface IStudentRepository: IRepository<Student>
+    {
+        Task<bool> Exists(int id);
+    }
     internal class StudentRepository : IStudentRepository
     {
         private SchoolDbContext _context;
@@ -44,6 +47,11 @@ namespace School.Infrastructure.Repositories
         {
             _context.Students.Update(item);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+           return await _context.Students.AnyAsync(x => x.Id == id);
         }
     }
 }

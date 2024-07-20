@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using School.Application.Commands.Applications;
+using School.Application.Queries.Applications;
+using School.Domain.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +13,34 @@ namespace School.Api.Controllers
     [ApiController]
     public class ApplicationController : ControllerBase
     {
-        // GET: api/<ApplicationController>
+        private ISender _sender;
+
+        public ApplicationController(ISender sender)
+        {
+            _sender = sender;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var res = await _sender.Send(new ApplicationListQuery());
+            return Ok(res);
         }
 
-        // GET api/<ApplicationController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ApplicationController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateApplicationDto dto)
         {
+            var application = new Domain.Models.Application()
+            {
+                ApplicationDate = dto.ApplicationDate,
+                CourseId = dto.CourseId,
+                StudentId = dto.StudentId
+            };
+
+            var res = await _sender.Send(new SaveApplicationCommand(application));
+            return Ok(res);
+
         }
 
-        // PUT api/<ApplicationController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ApplicationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

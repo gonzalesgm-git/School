@@ -25,7 +25,7 @@ namespace School.Application.Commands.Students
             var validatorResult = await validator.ValidateAsync(command.student);
             if (!validatorResult.IsValid)
             {
-                return Result.Fail(string.Join(",", validatorResult.Errors.Select(x => x.ErrorMessage)));
+                return Result.Fail(validatorResult.Errors.Select(x => new Error(x.ErrorMessage)).ToArray());
             }
 
             await _repository.SaveAsync(command.student);

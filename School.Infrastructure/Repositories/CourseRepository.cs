@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace School.Infrastructure.Repositories
 {
-    public interface ICourseRepostory : IRepository<Course>;
+    public interface ICourseRepostory : IRepository<Course>
+    {
+        Task<bool> Exists(int id);
+    }
     public class CourseRepository : ICourseRepostory
     {
         private SchoolDbContext _context;
@@ -22,6 +25,11 @@ namespace School.Infrastructure.Repositories
             var course = await GetAsync(id);
              _context.Courses.Remove(course);
             return _context.SaveChanges() > 0;
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await _context.Courses.AnyAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Course>> GetAllAsync()

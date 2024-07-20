@@ -24,6 +24,7 @@ namespace School.Infrastructure
         {
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepostory, CourseRepository>();
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
             return services;
         }
     }
