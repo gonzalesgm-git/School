@@ -32,7 +32,15 @@ export class StudentService {
     return this.httpClient.get(this.url);
   }
 
+  update(student: Student): Observable<any>{
+    return this.httpClient.put(`${this.url}/${student.id}`, student);
+  }
+
   save(student: Student):Observable<any>{
     return this.httpClient.post(this.url, student);
+  }
+
+  delete(student: Student):Observable<any>{
+    return this.httpClient.delete(`${this.url}/${student.id}`);
   }
 }

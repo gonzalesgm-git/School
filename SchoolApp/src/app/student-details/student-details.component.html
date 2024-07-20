@@ -3,18 +3,23 @@
 </div>
 <div class="row mt-5">
     <div class="col-6">
-        <app-student-detail-form/>
+        <app-student-detail-form 
+            (studentAdded)="studentAddedEvent($event)"
+            (studentUpdated)="studentUpdatedEvent($event)"
+            [selectedStudent]="selectedStudent"/>
     </div>
     <div class="col-6">
        <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-start mb-2 border px-4 py-3  rounded-3" 
             *ngFor="let student of studentList">
-            <div class="flex-grow-1 mouse-hover">
+            <div class="flex-grow-1 mouse-hover"
+                (click)="studentSelected(student)">
                 <div class="fw-bold"> {{student.firstName}} {{student.lastName}}</div>
                 <div>{{student.birthDate | date: 'dd/MM/yyyy'}}</div>
                 <div>{{student.email}} | {{student.phoneNumber}}</div>
             </div>
-            <span class="text-secondary">
+            <span class="text-secondary"
+                (click)="deleteStudent(student)">
                 <i class="fa-solid fa-trash-can fa-lg mouse-hover"></i>
             </span>
         </li>
