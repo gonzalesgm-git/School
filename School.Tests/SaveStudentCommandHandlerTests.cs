@@ -14,7 +14,7 @@ namespace School.Tests
             //Arrange
             var student = new Student()
             {
-                PhoneNumber = "123",
+                PhoneNumber = null,
                 Email = "test@test.com",
                 LastName = "testLastName",
                 BirthDate = DateTime.Now.AddYears(20),
@@ -94,7 +94,7 @@ namespace School.Tests
                             BirthDate=DateTime.Now, 
                             Email="q@test.com", 
                             Id=1, 
-                            PhoneNumber="1"},
+                            PhoneNumber=null},
                         false
                     },
             };

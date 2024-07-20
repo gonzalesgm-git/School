@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace School.Domain.Models;
 
@@ -16,6 +17,7 @@ public class Student
     public string Email { get; set; } = string.Empty;
     [Column(TypeName = "datetime")]
     public DateTime BirthDate { get; set; }
+
     [Column(TypeName = "nvarchar(20)")]
-    public string PhoneNumber { get; set; } = string.Empty;
+    public string? PhoneNumber { get; set; } = string.Empty;
 }

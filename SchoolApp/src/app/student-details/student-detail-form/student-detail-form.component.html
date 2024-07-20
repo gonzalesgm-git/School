@@ -58,7 +58,13 @@
         <label>email</label>
         <input class="form-control form-control-lg"
             formControlName="email"
-            id="email" value="">
+            id="email">
+            <div *ngIf="studentForm.controls['email'].dirty || studentForm.controls['email'].touched" 
+                class="alert">
+            <small *ngIf="studentForm.controls['email'].errors?.['required'] || studentForm.controls['email'].errors?.['email']"
+               class="text-danger">Valid email name is required.</small>
+            
+       </div>
     </div>
     <div class="mb-3">
         <label>Phone Number</label>

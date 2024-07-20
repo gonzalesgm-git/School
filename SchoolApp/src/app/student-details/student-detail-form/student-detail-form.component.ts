@@ -45,21 +45,21 @@ export class StudentDetailFormComponent implements OnInit, OnDestroy, OnChanges{
       firstName: new FormControl<string>(this.selectedStudent ? this.selectedStudent.firstName : '', { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)]}),
       lastName: new FormControl<string>(this.selectedStudent ? this.selectedStudent.lastName : '', {validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)]}, ),
       birthDate: new FormControl<Date>(this.selectedStudent ? this.selectedStudent.birthDate : new Date(), {validators: [Validators.required]}),
-      email: new FormControl<string>(this.selectedStudent ? this.selectedStudent.email: '', null),
+      email: new FormControl<string>(this.selectedStudent ? this.selectedStudent.email: '', {validators:[Validators.required, Validators.email]}),
       phoneNumber: new FormControl<string>(this.selectedStudent ? this.selectedStudent.phoneNumber : '', null),
     });    
   }
 
   validateAllFormFields(formGroup: FormGroup) {         
-  Object.keys(formGroup.controls).forEach(field => {  
-    const control = formGroup.get(field);             
-    if (control instanceof FormControl) {             
-      control.markAsTouched({ onlySelf: true });
-    } else if (control instanceof FormGroup) {        
-      this.validateAllFormFields(control);            
-    }
-  });
-}
+    Object.keys(formGroup.controls).forEach(field => {  
+      const control = formGroup.get(field);             
+      if (control instanceof FormControl) {             
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {        
+        this.validateAllFormFields(control);            
+      }
+    });
+  }
 
   save(): void{
     if(!this.studentForm.valid){
