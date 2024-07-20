@@ -14,12 +14,12 @@
             id="firstName">
         <div *ngIf="studentForm.controls['firstName'].dirty || studentForm.controls['firstName'].touched"  class="alert">
             <small *ngIf="studentForm.controls['firstName'].errors?.['required']"
-                class="text-danger">Name is required.</small>
+                class="text-danger">FirstName is required.</small>
             <small class="text-danger" *ngIf="studentForm.controls['firstName'].errors?.['minlength']">
-              Name must be at least 2 characters long.
+              FirstName must be at least 2 characters long.
             </small>
             <small class="text-danger" *ngIf="studentForm.controls['firstName'].errors?.['maxlength']">
-                Name must be at least 30 characters long.
+                FirstName must be at least 30 characters long.
               </small>
         </div>
         
@@ -29,6 +29,16 @@
         <input class="form-control form-control-lg"
             formControlName="lastName"
             id="lastName">
+            <div *ngIf="studentForm.controls['lastName'].dirty || studentForm.controls['lastName'].touched"  class="alert">
+                <small *ngIf="studentForm.controls['lastName'].errors?.['required']"
+                    class="text-danger">LastName is required.</small>
+                <small class="text-danger" *ngIf="studentForm.controls['lastName'].errors?.['minlength']">
+                  LastName must be at least 2 characters long.
+                </small>
+                <small class="text-danger" *ngIf="studentForm.controls['lastName'].errors?.['maxlength']">
+                    LastName must be at least 30 characters long.
+                  </small>
+            </div>
     </div>
     <div class="mb-3">
         <label>Birth Date</label>
@@ -37,6 +47,11 @@
             id="birthDate"
             type="date"
             value="{{ selectedStudent.birthDate | date:'yyyy-MM-dd' }}">
+            <div *ngIf="studentForm.controls['birthDate'].dirty || studentForm.controls['birthDate'].touched" 
+                 class="alert">
+                <small *ngIf="studentForm.controls['birthDate'].errors?.['required']"
+                    class="text-danger">BirthDate name is required.</small>
+            </div>
             
     </div>
     <div class="mb-3">
