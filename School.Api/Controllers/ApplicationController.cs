@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 using School.Application.Commands.Applications;
 using School.Application.Queries.Applications;
 using School.Domain.Dto;

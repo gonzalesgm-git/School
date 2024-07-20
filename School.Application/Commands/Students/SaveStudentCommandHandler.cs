@@ -2,15 +2,10 @@
 using School.Application.Validation;
 using School.Domain.Models;
 using School.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace School.Application.Commands.Students
 {
+    public record SaveStudentCommand(Student student) : IRequest<Result>;
     public class SaveStudentCommandHandler : IRequestHandler<SaveStudentCommand, Result>
     {
         private IStudentRepository _repository;

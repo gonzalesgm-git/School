@@ -1,14 +1,10 @@
 ﻿using MediatR;
 using School.Domain.Models;
 using School.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace School.Application.Queries.Students
 {
+    public record StudentQuery(int id) : IRequest<Student>;
     internal class StudentQueryHandler : IRequestHandler<StudentQuery, Student>
     {
         private IStudentRepository _studentRepository;

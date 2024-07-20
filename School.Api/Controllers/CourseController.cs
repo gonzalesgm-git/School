@@ -1,12 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using School.Application.Commands.Courses;
+using School.Application.Queries.Courses;
 using School.Domain.Dto;
 using School.Domain.Models;
-using School.Application.Commands;
-using System.Runtime.CompilerServices;
-using School.Application.Queries;
-using School.Application.Queries.Courses;
-using School.Application.Commands.Courses;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

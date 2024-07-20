@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace School.Domain.Models
+﻿namespace School.Domain.Models
 {
     public class Result<T> : Result
     where T : class

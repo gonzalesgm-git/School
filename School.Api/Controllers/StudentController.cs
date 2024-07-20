@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using School.Application.Commands;
 using School.Application.Commands.Students;
-using School.Application.Queries;
 using School.Application.Queries.Students;
 using School.Domain.Dto;
 using School.Domain.Models;

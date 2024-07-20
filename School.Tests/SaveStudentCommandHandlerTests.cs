@@ -1,15 +1,7 @@
 ﻿using Moq;
-using School.Application.Commands;
 using School.Application.Commands.Students;
-using School.Application.Queries;
 using School.Domain.Models;
 using School.Infrastructure.Repositories;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace School.Tests
