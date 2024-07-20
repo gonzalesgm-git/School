@@ -31,12 +31,6 @@ namespace School.Domain.Models
             return new Result<T>(value);
         }
 
-        public static new Result<T> Fail(string message, string? propertyName = null)
-        {
-            Error[] errors = { new Error(message, propertyName) };
-            return new Result<T>(errors);
-        }
-
         public static new Result<T> Fail(Error error)
         {
             Error[] errors = { error };
@@ -80,9 +74,9 @@ namespace School.Domain.Models
             return new Result();
         }
 
-        public static Result Fail(string message, string? propertyName = null)
+        public static Result Fail(string message)
         {
-            Error[] errors = { new Error(message, propertyName) };
+            Error[] errors = { new Error(message) };
             return new Result(errors);
         }
 
@@ -101,7 +95,7 @@ namespace School.Domain.Models
         public bool IsFailed() => !Success;
 
         public static implicit operator Result(Error error)
-            => Fail(error.Message, error.PropertyName);
+            => Fail(error.Message);
 
         public static implicit operator Result(Error[] errors)
             => Fail(errors);
@@ -110,12 +104,10 @@ namespace School.Domain.Models
     public class Error
     {
         public string Message { get; private set; }
-        public string? PropertyName { get; set; }
-
-        public Error(string message, string? propertyName = null)
+        
+        public Error(string message)
         {
             Message = message;
-            PropertyName = propertyName;
         }
     }
 }
