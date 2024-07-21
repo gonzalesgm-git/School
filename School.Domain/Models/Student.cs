@@ -20,4 +20,6 @@ public class Student
 
     [Column(TypeName = "nvarchar(20)")]
     public string? PhoneNumber { get; set; } = string.Empty;
+
+    public virtual ICollection<Application> Applications { get; set;} = new List<Application>();
 }
